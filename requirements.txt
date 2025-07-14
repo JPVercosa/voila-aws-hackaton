@@ -1,4 +1,10 @@
-streamlit
-boto3
-python-dotenv
-faiss-cpu
+streamlit==1.46.1
+boto3==1.39.4
+python-dotenv==1.1.1
+faiss-cpu==1.11.0
+strands-agents==0.3.0
+strands-agents-tools==0.1.9
+cryptography==45.0.5
+pypdf==5.7.0
+pypdf2==3.0.1
+tqdm==4.67.1
