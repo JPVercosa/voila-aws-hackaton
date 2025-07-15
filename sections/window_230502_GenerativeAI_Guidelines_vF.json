@@ -1,0 +1,110 @@
+[
+  {
+    "title": "Section 1",
+    "content": "<!-- image -->\n\n## GENERATIVE AI -MANDATORY GROUP GUIDELINES\n\nMay 2023\n\n<!-- image -->\n\n## YOUR KEY TAKEAWAYS:\n\n- -Group Management has decided to limit the usage of GenAI to specific fields at this point in time. Before getting involved in Generative AI ('GenAI') work for internal usage or for clients, engage and align with your Business Unit (BU) / Business Line (BL) management or designated SPoCs and  relevant  Group  functions  (legal,  innovation,  delivery,  portfolio)  to  find  out  abou"
+  },
+  {
+    "title": "Section 2",
+    "content": "t  GenAI strategy, risks and policy in your part of the business\n- -In general terms, when you use GenAI output, you will be responsible for it. Carefully consider the known risks when building GenAI solutions or when advising customers, and ensure sign-off from your BU / BL management or designated SPoCs and the local legal team\n- -Make sure there is a proper assessment of the GenAI tool's terms a nd conditions that you intend to use and that you strictly comply with such terms in the performan"
+  },
+  {
+    "title": "Section 3",
+    "content": "ce of any business activities\n- -Never use any client, third party or personal or non-public Capgemini data, even in anonymized form, in systems that we don't co ntrol or have appropriate contractual arrangements with\n- -When  using  GenAI:  (i)  read  and  comply  with  these  mandatory  Group  Guidelines,  (ii)  be transparent, inform the client in writing and make sure that from a contractual standpoint you don't  need  or  that  you  already  have  the  client's  approval  to  use  such  Gen"
+  },
+  {
+    "title": "Section 4",
+    "content": "AI  for  that  specific purpose and (iii)  clearly  identify  the  content  that  was  created  by GenAI  when  sharing  it  with clients or internally and the associated terms of use\n- -Remember  that,  similar  to  the  use  of  other  tools,  usage  of  GenAI  systems  is  prohibited  for activities that are illegal as per applicable laws, fraudulent, unethical, in violation of Capgemini's policies, or that pose a significant risk to Capgemini's reputation\n\nWHY ARE YOU READING THIS: For Capge"
+  },
+  {
+    "title": "Section 5",
+    "content": "mini, GenAI opens opportunities to complement our portfolio and to assist our way of working. New tools, business models and ideas seem to develop on a daily basis, but there is great uncertainty as to how GenAI should be used. While the underlying technology has been available for several years, the integration with chatbots has captured the attention of the public in an unprecedented way. As Capgemini, we have already delivered client projects using GenAI for many years and  are  currently  wo"
+  },
+  {
+    "title": "Section 6",
+    "content": "rking  on  new  portfolio  elements  in  line  with  the  recent  rapid  rise  of  attention. However,  the  complexity  and  fast-paced  development  of  these  techniques,  together  with  the  yet uncertain and evolving legal and regulatory landscape, mask important risks that must be considered and properly managed. These guidelines cover the main high-level aspects to help navigate how we can safely use the technology so that risks do not occur.\n\nOur Generative AI Group Guidelines are distr"
+  },
+  {
+    "title": "Section 7",
+    "content": "ibuted to all employees through the common communication channels (mail and Talent intranet). All employees must read, understand and comply with it. Compliance is a condition of employment. Violations, regardless of the Group company or place of activity, may lead to disciplinary sanctions, up to and including termination of employment, as foreseen by applicable local regulations.\n\nGENERAL USAGE &amp; RISKS: First and foremost, Group Management jointly decided to limit the usage of GenAI to spe"
+  },
+  {
+    "title": "Section 8",
+    "content": "cific fields at this point of time. Current usage of public / open-source GenAI tools poses significant risks ranging from data privacy, confidentiality and copyright issues to ethical biases and quality control risks in the generated responses. It cannot be traced with certainty what data a GenAI tool was based on and how it uses this data to come up with a specific output. So, it is impossible to tell whether the output infringes copyrights, trade secrets, privacy rights, other third-party rig"
+  },
+  {
+    "title": "Section 9",
+    "content": "hts, or even if the output is accurate -simply because the sources used are not visible. Hence, a human review of every output is absolutely necessary before using that output in situations that require correctness or adherence to laws or policies and appropriate quality check and verification mechanisms must be put in place. It is important to understand that in general terms, when you use GenAI output, you will be responsible for it. Further, every prompt into a GenAI tool may be stored and re"
+  },
+  {
+    "title": "Section 10",
+    "content": "used by the company behind it, so that prompt may\n\n<!-- image -->\n\nalready be a confidentiality breach (privacy rights, trade secrets, copyrights etc.) and your data prompted into the GenAI tool may be accessible by other third parties.\n\n## FUNCTIONAL RISKS\n\n| TRUST & CORRECTNESS   | GenAI models have no guarantee at all about correctness, and to make it worse, will always sound confident even if factually wrong                                                                     |\n|-------------"
+  },
+  {
+    "title": "Section 11",
+    "content": "----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|\n| INHERITED RISK        | Building on top of a foundational model, that is not well understood, means that downstream systems inherit unknown risks from that foundation                                                         |\n| BIAS                  | GenAI models will reflect the bias"
+  },
+  {
+    "title": "Section 12",
+    "content": "es present in their training data and can be made to be deliberately biased with certain prompts                                                                     |\n| SUSTAINABILITY        | GenAI models can require a huge amount of energy both in their initial training and their operational use                                                                                              |\n| LEGAL RISKS           | LEGAL RISKS                                                                     "
+  },
+  {
+    "title": "Section 13",
+    "content": "                                                                                                                       |\n| PRIVACY               | Current models are often trained without having a legal basis for all training data. Using the output with such data will repeat the infringement. Further, user prompts may jeopardize privacy rights |\n| DATA LEAKAGE          | Current models often completely memorize their training data, which can leak out either accidentally or with deliberate prompt"
+  },
+  {
+    "title": "Section 14",
+    "content": "ing by other individuals / companies in the future                       |\n| INTELLECTUAL PROPERTY | Current foundational models are often trained on data which may be copyrighted or restricted by license. GenAI models might regurgitate this copyrighted data                                          |\n| ETHICS                | Current models are purely statistical predictors and have no inherent model of knowledge, ethics or culture. Attempts to mitigate these issues are all imperfect            "
+  },
+  {
+    "title": "Section 15",
+    "content": "                           |\n\nMany of the risks associated with GenAI occur when using Foundation Models , which are large models often built by external companies, which other more specialized systems are built on top of. Very often these are closed-source, and are not transparent about how they were trained, what data they were trained on, and what risk mitigations they include. When considering including these in your solutions, make sure that Capgemini is authorized to use it for the relevan"
+  },
+  {
+    "title": "Section 16",
+    "content": "t purposes and treat this with the same technical and  legal  precautions  as  you  would  with  any  other  third-party,  non-transparent,  closed-source component. Inadequate handling of abovementioned risks may result in severe reputational damage for Capgemini as recent examples from other large corporations show.\n\nUse cases that use GenAI techniques but that are not built on third-party foundation models are much lower risk, but you should still consider how to mitigate the risks and ensure"
+  },
+  {
+    "title": "Section 17",
+    "content": " you are following Capgemini's standard policies and ethical guidelines.\n\nUSE CASES: Despite the potential risks and the still various open questions, the great potential GenAI offers to our business is undeniable. There are many benefits that can be realized once GenAI is used as an assistant to our usual way of working. Three group-level use cases with respective tools are already being piloted by an expert group from across our business lines that will bring major benefits to our value creati"
+  },
+  {
+    "title": "Section 18",
+    "content": "on using GenAI assistants. Additionally, the expert group is evaluating further use cases to be applied in our field of business. BU- / BL-specific use cases and offers will be developed and piloted through this channel around the organization.\n\nHOW TO USE IT IN AN ALLOWED SCENARIO: Using GenAI requires different kinds of tools from private to open-source. In this context, the following principles should be applied:\n\n<!-- image -->\n\n- -When opening a GenAI account, do it in line with your local "
+  },
+  {
+    "title": "Section 19",
+    "content": "policies. Do not share your account with others and get approval for the required subscriptions\n- -Some  GenAI  tools  may  be  banned  or  restricted  in  certain  countries.  Always  check  with  your respective local teams (legal, data privacy and security)\n- -Use GenAI output in line with relevant licenses, applicable laws, client contracts and Capgemini policies. Avoid use in highly regulated industries and safety-critical projects\n- -Only use data classified as Public (Sec0) for prompts\n- "
+  },
+  {
+    "title": "Section 20",
+    "content": "-Make sure, that for your use case you have put in place the required mechanisms for iteratively reviewing the output applying our common delivery quality standards\n- -Maintain a record of when the content was generated and the prompt that was used to generate it -even keep it in the project documentation when using it for client work\n- -Check whether contractual terms allow the use of GenAI (in bids, proposals and delivery), ensure the gathering of clients' consent before using GenAI in client "
+  },
+  {
+    "title": "Section 21",
+    "content": "work and deploy additional required measures to assure compliance\n- -Clearly identify the content that was created by GenAI when sharing it with clients or internally and the associated terms of use\n- -Group guidelines on GenAI will be enforced through updates in existing Capgemini policies and guidelines (e.g. repository managed policies, PACE account guidelines , security setting policies, …), which will be updated in the upcoming weeks\n\nWHAT TO KEEP IN MIND: Be aware that the Group is reflect"
+  },
+  {
+    "title": "Section 22",
+    "content": "ing how, who and when we should use GenAI to  complement our client-facing work. Once successfully finalized, the Group will communicate more information on how we can integrate the technology into our work to the relevant communities. In the meantime, whenever considering using GenAI, please perform an assessment of the risks listed above and get approval /permission from your relevant stakeholders (internally and externally). Additionally, assess whether your output needs to be comprehensively"
+  },
+  {
+    "title": "Section 23",
+    "content": " current and that you have the expertise to very its correctness. The usage and regulatory space of GenAI methods and tools may vary significantly across our geographies,  industries,  use  cases,  context  and  capabilities  and  therefore  have  to  be  evaluated  and approved individually. Before doing so, make sure to review our existing policies:\n\nCapgemini Code of Ethics for AI\n\nGroup Security Policy\n\nCyber Security Policies\n\nIntellectual Property Policy\n\nGroup Data Protection Policy\n\nExpo"
+  },
+  {
+    "title": "Section 24",
+    "content": "rt Control Policy\n\nFURTHER INFORMATION: As the technology is developing rapidly, these guidelines will be updated and communicated regularly. On Group-level there are three main activities with experts from across all our business  lines  on  the  way:  (1)  AI  Futures  Lab  on  GenAI  working  on  Innovation,  Workshops  and Cooperations, (2) Group Portfolio Offerings with GenAI to be applied with and for customers, and (3) GenAI Regulatory Office for legal advice and guidance. All of them can"
+  },
+  {
+    "title": "Section 25",
+    "content": " support the BU / BL management and designated SPoCs in clarifying individualized application and guidance for GenAI.\n\nLet's make sure we make the most of the potential of GenAI, but in a safe and controlled manner. If in doubt, better ask than risk it! If you need further information or assistance, please reach out to your local BU / BL management or designated SPoCs, local legal or data protection department.\n\n<!-- image -->\n\n## About Capgemini\n\nCapgemini  is  a  global  leader  in  partnering"
+  },
+  {
+    "title": "Section 26",
+    "content": "  with  companies  to  transform  and manage  their  business  by  harnessing  the  power  of  technology.  The  Group  is guided everyday by its purpose of unleashing human energy through technology for an inclusive and sustainable future. It is a responsible and diverse organization of over 360,000 team members more than 50 countries. With its strong 55-year heritage  and  deep  industry  expertise,  Capgemini  is  trusted  by  its  clients  to address the entire breadth of their business need"
+  },
+  {
+    "title": "Section 27",
+    "content": "s, from strategy and design to operations, fueled by the fast evolving and innovative world of cloud, data, AI, connectivity, software, digital engineering and platforms. The Group reported in 2022 global revenues of € 22 billion.\n\nGet the Future You Want | www.capgemini.com\n\n<!-- image -->\n\nThis document contains information that may be privileged or confidential and is the property of the Capgemini Group.\n\nCompany Confidential. Copyright © 2023 Capgemini. All rights reserved."
+  }
+]

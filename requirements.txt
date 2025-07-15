@@ -8,3 +8,4 @@ cryptography==45.0.5
 pypdf==5.7.0
 pypdf2==3.0.1
 tqdm==4.67.1
+docling==2.41.0
