@@ -1,0 +1,62 @@
+[
+  {
+    "section_title": "YOUR KEY TAKEAWAYS:",
+    "clause_text": "In general terms, when you use GenAI output, you will be responsible for it.",
+    "area": "legal",
+    "relevance": 0.95
+  },
+  {
+    "section_title": "YOUR KEY TAKEAWAYS:",
+    "clause_text": "Never use any client, third party or personal or non-public Capgemini data, even in anonymized form, in systems that we don't control or have appropriate contractual arrangements with.",
+    "area": "privacy",
+    "relevance": 0.95
+  },
+  {
+    "section_title": "YOUR KEY TAKEAWAYS:",
+    "clause_text": "Remember that, similar to the use of other tools, usage of GenAI systems is prohibited for activities that are illegal as per applicable laws, fraudulent, unethical, in violation of Capgemini's policies, or that pose a significant risk to Capgemini's reputation.",
+    "area": "ethics",
+    "relevance": 0.95
+  },
+  {
+    "section_title": "GENERATIVE AI -MANDATORY GROUP GUIDELINES",
+    "clause_text": "Ensure all operations comply with local and international regulations.",
+    "area": "compliance",
+    "relevance": 0.9
+  },
+  {
+    "section_title": "GENERATIVE AI -MANDATORY GROUP GUIDELINES",
+    "clause_text": "Personal data must be handled in accordance with privacy laws.",
+    "area": "privacy",
+    "relevance": 0.9
+  },
+  {
+    "section_title": "GENERATIVE AI -MANDATORY GROUP GUIDELINES",
+    "clause_text": "Implement robust security measures to protect company assets.",
+    "area": "security",
+    "relevance": 0.9
+  },
+  {
+    "section_title": "GENERATIVE AI -MANDATORY GROUP GUIDELINES",
+    "clause_text": "Adhere to the company's code of ethics in all business dealings.",
+    "area": "ethics",
+    "relevance": 0.9
+  },
+  {
+    "section_title": "GENERATIVE AI -MANDATORY GROUP GUIDELINES",
+    "clause_text": "Identify and mitigate potential risks to the business.",
+    "area": "risk_management",
+    "relevance": 0.9
+  },
+  {
+    "section_title": "YOUR KEY TAKEAWAYS:",
+    "clause_text": "Group Management has decided to limit the usage of GenAI to specific fields at this point in time.",
+    "area": "risk_management",
+    "relevance": 0.9
+  },
+  {
+    "section_title": "YOUR KEY TAKEAWAYS:",
+    "clause_text": "Carefully consider the known risks when building GenAI solutions or when advising customers, and ensure sign-off from your BU / BL management or designated SPoCs and the local legal team.",
+    "area": "risk_management",
+    "relevance": 0.9
+  }
+]

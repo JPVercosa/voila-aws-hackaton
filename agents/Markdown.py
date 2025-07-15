@@ -6,6 +6,9 @@ from strands.models import BedrockModel
 from strands_tools import use_aws
 from docling.document_converter import DocumentConverter, DocumentStream
 from pprint import pprint
+from pydantic import BaseModel
+from utils.normalizeNames import normalize_basename, make_pdf_name
+
 
 # ---------------------------
 # LLM configuration
@@ -16,6 +19,11 @@ NOVA_MODEL = BedrockModel(
     temperature=0.2,
     top_p=0.9,
 )
+
+class FileMeta(BaseModel):
+    base_name: str
+    extension: str
+    local_path: str
 
 # ---------------------------
 # PdfToMarkdownAgent as Class
@@ -34,9 +42,9 @@ class PdfToMarkdownAgent:
         )
 
     @tool
-    def download_pdf_from_s3(self, bucket: str, key: str) -> dict:
+    def download_pdf_from_s3(self, bucket: str, document_name: str) -> dict:
         """
-        Download a PDF from S3 and save to a local tmp directory.
+        Download a PDF from S3 raw folder and save to a local tmp directory.
         Returns a dict with local_path and filename.
 
         Args:
@@ -47,6 +55,11 @@ class PdfToMarkdownAgent:
         """
         base_dir = os.getcwd()
         tmp_dir = os.path.join(base_dir, "tmp")
+        if not bucket or not document_name:
+            return {"error": "Bucket and document_name must be provided."}
+        
+        key = f"raw/{document_name}"
+        print(f"🔧 Downloading {key} from bucket {bucket}")
 
         try:
             response = self.s3_client.get_object(Bucket=bucket, Key=key)
@@ -122,18 +135,28 @@ class PdfToMarkdownAgent:
 # Wrap in Tool for other agents
 # ---------------------------
 @tool
-def pdf_to_md_agent(query: str) -> str:
+def pdf_to_md_agent(document_name: str, bucket: str) -> str:
     """
     Tool to convert a PDF file from S3 to Markdown.
     This function orchestrates the download and conversion process.
     Then it saves the Markdown result file to a markdown directory with the same base filename and .md extension.
 
     Args:
-        query (str): Query containing S3 bucket and key information.
+        document_name (str): Title of the file to be processed without extension.
+        bucket (str): Name of the S3 bucket where the PDF is stored.
 
     Returns:
         str: Result of the conversion process, including the path to the saved Markdown file.
     """
+    if not document_name or not bucket:
+        return "Error: document_name and bucket must be provided."
+    
+
+    base = normalize_basename(document_name)
+    pdf_name = make_pdf_name(base) 
+    query = f"Download {pdf_name} from S3 bucket {bucket} and convert it to Markdown."
+    print(f"🤖 PDF to MD Agent Tool - Markdown Agent")
+    print(f"🔍 Processing query: {query}")
     pdf_md_agent = PdfToMarkdownAgent()
     result = pdf_md_agent(query)
     return str(result)
