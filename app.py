@@ -1,72 +1,60 @@
-import streamlit as st
-import boto3
 import os
+import streamlit as st
+from agents.Orchestrator import OrchestratorAgent
 from dotenv import load_dotenv
+from strands.telemetry import StrandsTelemetry
 
-# Para vetores
-import faiss
-import numpy as np
-
-# ====== Carregar variáveis de ambiente ======
+# Load environment variables
 load_dotenv()
 
-AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
-AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
-AWS_DEFAULT_REGION = os.getenv("AWS_DEFAULT_REGION")
-S3_BUCKET_NAME = os.getenv("S3_BUCKET_NAME")
+class StrandsTelemetryExtension(StrandsTelemetry):
+    def __init__(self):
+        super().__init__()
+        self.actual_tool = None
 
-if not all([AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_DEFAULT_REGION, S3_BUCKET_NAME]):
-    st.error("Por favor, configure suas variáveis de ambiente no arquivo .env.")
-    st.stop()
+    def set_actual_tool(self, tool_name: str):
+        """Set the current tool being used for telemetry."""
+        self.actual_tool = tool_name
 
-# ====== Inicializar cliente S3 ======
-s3_client = boto3.client(
-    's3',
-    region_name=AWS_DEFAULT_REGION,
-    aws_access_key_id=AWS_ACCESS_KEY_ID,
-    aws_secret_access_key=AWS_SECRET_ACCESS_KEY
-)
+    
 
-# ====== Função para salvar índice FAISS no S3 ======
-def save_index_to_s3(index, s3_key):
-    faiss.write_index(index, "temp.index")
-    s3_client.upload_file("temp.index", S3_BUCKET_NAME, s3_key)
-    os.remove("temp.index")
 
-# ====== Função para carregar índice FAISS do S3 ======
-def load_index_from_s3(s3_key):
-    s3_client.download_file(S3_BUCKET_NAME, s3_key, "temp.index")
-    index = faiss.read_index("temp.index")
-    os.remove("temp.index")
-    return index
+# Retrieve environment variables
+KNOWLEDGE_BASE_ID = os.getenv("KNOWLEDGE_BASE_ID", "default_kb_id")
+AWS_REGION = os.getenv("AWS_REGION", "us-east-1")
 
-# ====== Streamlit App ======
-st.title("Hackathon Vetor DB + S3")
+# Initialize the OrchestratorAgent
+orchestrator_agent = OrchestratorAgent()
 
-option = st.selectbox("O que você quer fazer?", ["Criar índice", "Consultar índice"])
+# Streamlit app layout
+st.set_page_config(page_title="AWS Hackaton Solution", layout="centered")
+st.title("🧠 Orchestrator Agent Chat Interface")
 
-if option == "Criar índice":
-    uploaded_files = st.file_uploader("Envie arquivos de texto", accept_multiple_files=True)
-    if st.button("Criar índice"):
-        vectors = []
-        for file in uploaded_files:
-            # content = file.read().decode("utf-8")
-            # Cria vetores dummy: cada documento vira um vetor aleatório (só exemplo)
-            vector = np.random.rand(512).astype('float32')
-            vectors.append(vector)
+# Initialize chat history
+if "messages" not in st.session_state:
+    st.session_state.messages = []
 
-        xb = np.vstack(vectors)
-        index = faiss.IndexFlatL2(512)
-        index.add(xb)
+# Display chat history
+for message in st.session_state.messages:
+    with st.chat_message(message["role"]):
+        st.markdown(message["content"])
 
-        save_index_to_s3(index, "vector.index")
-        st.success("Índice criado e salvo no S3!")
+# User input
+if prompt := st.chat_input("Ask a question..."):
+    # Display user message
+    st.chat_message("user").markdown(prompt)
+    st.session_state.messages.append({"role": "user", "content": prompt})
 
-elif option == "Consultar índice":
-    query = st.text_input("Digite uma query (dummy)")
-    if st.button("Buscar"):
-        index = load_index_from_s3("vector.index")
-        # Vetor de consulta dummy
-        xq = np.random.rand(1, 512).astype('float32')
-        D, I = index.search(xq, k=5)
-        st.write("Documentos mais próximos:", I)
+    # Call the OrchestratorAgent
+    with st.spinner("Thinking..."):
+        try:
+            response = orchestrator_agent(prompt, KNOWLEDGE_BASE_ID, AWS_REGION)
+            print(response)
+            response_text = str(response)
+        except Exception as e:
+            response_text = f"❌ Error: {str(e)}"
+
+    # Display assistant response
+    st.chat_message("assistant").markdown(response_text)
+    st.session_state.messages.append({"role": "assistant", "content": response_text})
+

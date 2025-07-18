@@ -1,0 +1,62 @@
+[
+  {
+    "section_title": "FUNCTIONAL RISKS",
+    "clause_text": "In general terms, when you use GenAI output, you will be responsible for it.",
+    "area": "risk_management",
+    "relevance": 1.0
+  },
+  {
+    "section_title": "FUNCTIONAL RISKS",
+    "clause_text": "Carefully consider the known risks when building GenAI solutions or when advising customers, and ensure sign-off from your BU / BL management or designated SPoCs and the local legal team.",
+    "area": "risk_management",
+    "relevance": 1.0
+  },
+  {
+    "section_title": "FUNCTIONAL RISKS",
+    "clause_text": "Make sure there is a proper assessment of the GenAI tool's terms and conditions that you intend to use and that you strictly comply with such terms in the performance of any business activities.",
+    "area": "compliance",
+    "relevance": 1.0
+  },
+  {
+    "section_title": "FUNCTIONAL RISKS",
+    "clause_text": "Never use any client, third party or personal or non-public Capgemini data, even in anonymized form, in systems that we don't control or have appropriate contractual arrangements with.",
+    "area": "privacy",
+    "relevance": 1.0
+  },
+  {
+    "section_title": "FUNCTIONAL RISKS",
+    "clause_text": "When using GenAI: (i) read and comply with these mandatory Group Guidelines, (ii) be transparent, inform the client in writing and make sure that from a contractual standpoint you don't need or that you already have the client's approval to use such GenAI for that specific purpose and (iii) clearly identify the content that was created by GenAI when sharing it with clients or internally and the associated terms of use.",
+    "area": "legal",
+    "relevance": 1.0
+  },
+  {
+    "section_title": "FUNCTIONAL RISKS",
+    "clause_text": "Remember that, similar to the use of other tools, usage of GenAI systems is prohibited for activities that are illegal as per applicable laws, fraudulent, unethical, in violation of Capgemini's policies, or that pose a significant risk to Capgemini's reputation.",
+    "area": "ethics",
+    "relevance": 1.0
+  },
+  {
+    "section_title": "GENERATIVE AI -MANDATORY GROUP GUIDELINES",
+    "clause_text": "Implement robust IT infrastructure to support the deployment and maintenance of generative AI systems.",
+    "area": "it",
+    "relevance": 0.9
+  },
+  {
+    "section_title": "GENERATIVE AI -MANDATORY GROUP GUIDELINES",
+    "clause_text": "Adhere to ethical guidelines when developing and deploying generative AI to avoid biases and ensure fairness.",
+    "area": "ethics",
+    "relevance": 0.9
+  },
+  {
+    "section_title": "GENERATIVE AI -MANDATORY GROUP GUIDELINES",
+    "clause_text": "Ensure that all generative AI applications comply with relevant laws and regulations.",
+    "area": "legal",
+    "relevance": 0.9
+  },
+  {
+    "section_title": "GENERATIVE AI -MANDATORY GROUP GUIDELINES",
+    "clause_text": "Protect user data and ensure privacy compliance when using generative AI technologies.",
+    "area": "privacy",
+    "relevance": 0.9
+  }
+]
