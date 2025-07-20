@@ -18,6 +18,8 @@ This document details the architecture and solutions developed for the Voila AWS
 
 The UI interface is made in streamlit, allowing users to interact with the agents and tools seamlessly. Also it make possible to host the solution on AWS, in a serverless manner or in a EC2 instance.
 
+![Streamlit UI](https://ibb.co/yngHpqg5)
+
 ---
 
 ## Project Architecture
@@ -37,6 +39,8 @@ All those steps are handled by different agents, and many agents are exposed as 
 ---
 
 ## Agents and Tools
+
+![Agents Architecture](https://ibb.co/bjp4Qtpj)
 
 ### Orchestrator Agent
 - **Purpose:** Coordinates the entire workflow and manages agent execution.
@@ -137,4 +141,3 @@ All those steps are handled by different agents, and many agents are exposed as 
 
 The Voila AWS Hackathon project demonstrates a robust, modular approach to document processing using a multi-agent system. Each agent and tool is designed for a specific task, ensuring scalability and maintainability. The use of Amazon Knowledge Base for vector search, the Strands agentic framework for orchestration, and a short memory object for stateful flow organization enables advanced, context-aware document analysis and response generation. This architecture is extensible and can be adapted to support additional document types, validation rules, and integration points as needed. The system is accessible via a Streamlit UI, allowing users to interact with the agents and tools seamlessly. The UI has a graphical interface that allows users to watch the agents working, and which tools are being used at each step, providing transparency and ease of use.
 
-  
