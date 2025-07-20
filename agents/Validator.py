@@ -5,6 +5,7 @@ from strands_tools import retrieve
 from pydantic import BaseModel
 from enum import Enum
 from memory.AgentsMemory import memory
+import json
 
 VALIDATION_PROMPT = """You are a Validator Agent responsible for validating clauses extracted from documents.
 You will receive a set of clauses and a context in which the validation is being performed.
@@ -103,6 +104,14 @@ def validate_agent(context: str) -> str:
 
     memory.set("actual_agent", "Validator")
     clauses = memory.get("top_clauses") or []
+    if not clauses:
+        doc_name = memory.get("main_document")
+        base_dir = os.getcwd()
+        doc = os.path.join(base_dir, "clauses", doc_name) if doc_name else None
+        if doc and os.path.exists(doc):
+            print(f"Loading clauses from {doc}")
+            with open(doc, "r") as f:
+                clauses = json.load(f)
     if not clauses or not isinstance(clauses, list):
         return "No clauses provided for validation."
     if not context:
