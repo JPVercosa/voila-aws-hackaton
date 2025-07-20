@@ -18,7 +18,7 @@ This document details the architecture and solutions developed for the Voila AWS
 
 The UI interface is made in streamlit, allowing users to interact with the agents and tools seamlessly. Also it make possible to host the solution on AWS, in a serverless manner or in a EC2 instance.
 
-![Streamlit UI](https://ibb.co/yngHpqg5)
+![Streamlit UI](https://raw.githubusercontent.com/JPVercosa/voila-aws-hackaton/refs/heads/main/images/Captura%20de%20tela%202025-07-20%20152931.png?token=GHSAT0AAAAAADHTFSIFLHIKLYRCYZ6EVJVI2D5KZMA)
 
 ---
 
@@ -40,7 +40,7 @@ All those steps are handled by different agents, and many agents are exposed as 
 
 ## Agents and Tools
 
-![Agents Architecture](https://ibb.co/bjp4Qtpj)
+![Agents Architecture](https://raw.githubusercontent.com/JPVercosa/voila-aws-hackaton/refs/heads/main/images/Captura%20de%20tela%202025-07-20%20152959.png?token=GHSAT0AAAAAADHTFSIEBGSPEBIDVTGWCLJG2D5KZBA)
 
 ### Orchestrator Agent
 - **Purpose:** Coordinates the entire workflow and manages agent execution.
