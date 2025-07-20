@@ -1,9 +1,10 @@
+from memory.AgentsMemory import memory
 from agents.Markdown import pdf_to_md_agent
 from agents.Splitter import splitter_agent
 from agents.Clauses import clauses_agent
 from strands import Agent, tool
 from strands.models import BedrockModel
-from utils.normalizeNames import normalize_basename, make_pdf_name
+from utils.normalizeNames import normalize_basename, make_pdf_name, make_md_name
 import os
 
 
@@ -63,13 +64,18 @@ class IngestionAgent():
         Returns:
             str: A message indicating whether the document has been processed or not.
         """
+        memory.set("actual_agent", "Ingestion")
+        memory.set("actual_tool", "check_status")
+        base_name = normalize_basename(document_name)
+        markdown_name = make_md_name(base_name)
         base_dir = os.getcwd()
-        markdown_file = os.path.join(base_dir, "markdown", f"{document_name}.md")
-
+        markdown_file = os.path.join(base_dir, "markdown", markdown_name)
+        
         if os.path.exists(markdown_file):
-            return f"Document {document_name} has been processed and is available in Markdown format."
+            memory.set("markdown_name", markdown_name)
+            return f"Document {base_name} has been processed and is available in Markdown format."
         else:
-            return f"Document {document_name} has not been processed yet."
+            return f"Document {base_name} has not been processed yet."
         
     def __call__(self, instruction: str) -> dict:
         return self.agent(instruction)
@@ -90,8 +96,10 @@ def ingestion_agent(instruction: str, document_name: str, bucket_name: str, cont
     Returns:
         dict: JSON object with the name of the processed document and a list of more relevant clauses based on the context provided and their areas.
     """
+    memory.set("actual_agent", "Ingestion")
     base = normalize_basename(document_name)
     pdf_name = make_pdf_name(base)
+    memory.set("base_pdf_name", pdf_name)
     instruction = f"Download {pdf_name} from S3 bucket {bucket_name} and process it. Context: {context}"
     print(f"🤖 Ingestion Agent Tool - Ingestion Agent")
     print(f"🔍 Processing query: {instruction}")

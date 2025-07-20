@@ -7,6 +7,7 @@ from strands_tools import use_aws
 from docling.document_converter import DocumentConverter, DocumentStream
 from pprint import pprint
 from pydantic import BaseModel
+from memory.AgentsMemory import memory
 from utils.normalizeNames import normalize_basename, make_pdf_name
 
 
@@ -53,11 +54,14 @@ class PdfToMarkdownAgent:
         Returns:
             dict: Contains 'local_path' and 'filename' of the downloaded PDF.
         """
+        memory.set("actual_agent", "Markdown")
+        memory.set("actual_tool", "download_pdf_from_s3")
         base_dir = os.getcwd()
         tmp_dir = os.path.join(base_dir, "tmp")
         if not bucket or not document_name:
+            
             return {"error": "Bucket and document_name must be provided."}
-        
+
         key = f"raw/{document_name}"
         print(f"🔧 Downloading {key} from bucket {bucket}")
 
@@ -65,6 +69,7 @@ class PdfToMarkdownAgent:
             response = self.s3_client.get_object(Bucket=bucket, Key=key)
             pdf_bytes = response['Body'].read()
         except Exception as e:
+            
             return {"error": f"Error downloading file from S3: {e}"}
 
         filename = key.rsplit("/", 1)[-1]
@@ -75,9 +80,11 @@ class PdfToMarkdownAgent:
             with open(local_path, "wb") as f:
                 f.write(pdf_bytes)
         except Exception as e:
+            
             return {"error": f"Error saving file to local tmp: {e}"}
 
         print(f"📥 Downloaded {key} to {local_path} ({len(pdf_bytes)} bytes)")
+        
         return {
             "local_path": local_path,
             "filename": filename
@@ -95,6 +102,8 @@ class PdfToMarkdownAgent:
         Returns:
             str: Path to the saved Markdown file.
         """
+        memory.set("actual_agent", "Markdown")
+        memory.set("actual_tool", "convert_pdf_save_md")
         base_dir = os.getcwd()
         markdown_dir = os.path.join(base_dir, "markdown")
 
@@ -103,6 +112,7 @@ class PdfToMarkdownAgent:
             with open(local_path, "rb") as f:
                 source_stream = DocumentStream(name=filename, stream=BytesIO(f.read()))
         except Exception as e:
+            
             return f"Error reading PDF file: {e}"
 
         try:
@@ -110,6 +120,7 @@ class PdfToMarkdownAgent:
             result = converter.convert(source_stream).document
             markdown = result.export_to_markdown()
         except Exception as e:
+            
             return f"Error converting PDF to Markdown: {e}"
 
         md_filename = filename.rsplit(".", 1)[0] + ".md"
@@ -120,9 +131,11 @@ class PdfToMarkdownAgent:
             with open(md_path, "w", encoding="utf-8") as md_file:
                 md_file.write(markdown)
         except Exception as e:
+            
             return f"Error saving Markdown file: {e}"
 
         print(f"✅ Markdown saved to {md_path}")
+        
         return f"Markdown saved to {md_path}"
 
     def __call__(self, query: str) -> str:
@@ -148,6 +161,7 @@ def pdf_to_md_agent(document_name: str, bucket: str) -> str:
     Returns:
         str: Result of the conversion process, including the path to the saved Markdown file.
     """
+    memory.set("actual_agent", "Markdown")
     if not document_name or not bucket:
         return "Error: document_name and bucket must be provided."
     

@@ -3,6 +3,7 @@ import json
 from strands import Agent, tool
 from strands.models import BedrockModel
 from utils.normalizeNames import normalize_basename, make_md_name
+from memory.AgentsMemory import memory
 
 # ---------------------------
 # LLM configuration
@@ -35,7 +36,10 @@ class SplitterAgent:
         Returns:
             str: The result of the splitting operation, including the path to the saved sections file.
         """
+        memory.set("actual_agent", "Splitter")
+        memory.set("actual_tool", "split_sections_by_title")
         if not document_name:
+            
             return "Name of the file is not provided."
 
         base_dir = os.getcwd()
@@ -49,11 +53,14 @@ class SplitterAgent:
             with open(os.path.join(markdown_dir, document_name), "r", encoding="utf-8") as f:
                 text = f.read()
         except FileNotFoundError:
+            
             return f"File {document_name} not found in {markdown_dir}."
         except Exception as e:
+            
             return f"Error reading file: {e}"
 
         if not text.strip():
+            
             return "File is empty."
         
         sections = []
@@ -71,6 +78,7 @@ class SplitterAgent:
             sections.append(current_section)
 
         if not sections:
+            
             return "No sections found in the document."
 
         try:
@@ -81,8 +89,10 @@ class SplitterAgent:
             with open(sections_file, "w", encoding="utf-8") as f:
                 json.dump(sections, f, ensure_ascii=False, indent=2)
         except Exception as e:
+            
             return f"Error saving sections to file: {e}"
 
+        
         return "Sections saved to " + sections_file
 
     @tool
@@ -97,7 +107,10 @@ class SplitterAgent:
         Returns:
             str: The result of the splitting operation, including the path to the saved sections file.
         """
+        memory.set("actual_agent", "Splitter")
+        memory.set("actual_tool", "split_sections_by_sliding_window")
         if not document_name:
+            
             return "Name of the file is not provided."
         
         print(f"🔧 Splitting document by sliding window: {document_name} with window size {window_size} and overlap {overlap}")
@@ -110,16 +123,20 @@ class SplitterAgent:
             with open(os.path.join(markdown_dir, document_name), "r", encoding="utf-8") as f:
                 text = f.read()
         except FileNotFoundError:
+            
             return f"File {document_name} not found in {markdown_dir}."
         except Exception as e:
+            
             return f"Error reading file: {e}"
 
         if not text.strip():
+            
             return "File is empty."
 
         sections = []
         step_size = window_size - overlap
         if step_size <= 0:
+            
             return "Overlap must be smaller than window size."
 
         for i in range(0, len(text), step_size):
@@ -136,8 +153,10 @@ class SplitterAgent:
             with open(sections_file, "w", encoding="utf-8") as f:
                 json.dump(sections, f, ensure_ascii=False, indent=2)
         except Exception as e:
+            
             return f"Error saving sections to file: {e}"
 
+        
         return "Sections saved to " + sections_file
 
     @tool
@@ -148,7 +167,10 @@ class SplitterAgent:
         Returns:
             tuple[int, int]: A tuple containing the word count and title count.
         """
+        memory.set("actual_agent", "Splitter")
+        memory.set("actual_tool", "count_words_and_titles")
         if not document_name:
+            
             return 0, 0
         
         print(f"🔧 Counting words and titles in document: {document_name}")
@@ -160,8 +182,10 @@ class SplitterAgent:
             with open(os.path.join(markdown_dir, document_name), "r", encoding="utf-8") as f:
                 text = f.read()
         except FileNotFoundError:
+            
             return 0, 0
         except Exception:
+            
             return 0, 0
 
         if not text.strip():
@@ -169,6 +193,7 @@ class SplitterAgent:
 
         word_count = len(text.split())
         title_count = text.count("## ")
+        
         return word_count, title_count
 
     def __call__(self, query: str) -> str:
@@ -188,6 +213,7 @@ def splitter_agent(document_name: str) -> str:
     Returns:
         str: Result of the splitting operation.
     """
+    memory.set("actual_agent", "Splitter")
 
     if not document_name:
         return "Error: document_name must be provided."

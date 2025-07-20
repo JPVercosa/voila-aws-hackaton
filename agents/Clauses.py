@@ -6,6 +6,7 @@ from strands.models import BedrockModel
 from pydantic import BaseModel, Field
 from pprint import pprint
 from utils.normalizeNames import normalize_basename, make_sections_name
+from memory.AgentsMemory import memory
 
 # ---------------------------
 # LLM configuration
@@ -34,7 +35,6 @@ class Clauses(BaseModel):
 class ClausesAgent:
     def __init__(self):
         self.agent = Agent(model=NOVA_MODEL)
-        
 
     def analyze_sections(self, document_name: str, chosen_file: str, context: str = "") -> dict:
         base_dir = os.getcwd()
@@ -95,10 +95,13 @@ class ClausesAgent:
             with open(clauses_file, "w", encoding="utf-8") as f:
                 json.dump(top_clauses, f, indent=2)
             
-        
-        return {"file": document_name, "clauses": top_clauses}
+        clauses_context = {"file": document_name, "clauses": top_clauses} 
+        memory.set("top_clauses", top_clauses)
+        return clauses_context  
 
     def __call__(self, document_name: str, chosen_file: str, context: str = "") -> str:
+        memory.set("actual_agent", "Clauses")
+        memory.set("actual_tool", "analyze_sections")
         result = self.analyze_sections(document_name, chosen_file, context)
         return json.dumps(result, indent=2)
     
@@ -115,6 +118,7 @@ def clauses_agent(document_name: str, context: str = "") -> str:
     Returns:
         str: JSON string with extracted clauses.
     """
+    memory.set("actual_agent", "Clauses")
     if not document_name:
         return "Document name is required."
     
